@@ -1,5 +1,5 @@
-192.168.200.139
-192.168.200.136
-192.168.200.134
+192.168.200.139 httpd_package=httpd php_package=php
+192.168.200.136 httpd_package=httpd php_package=php
+192.168.200.134 httpd_package=httpd php_package=php
 
 
