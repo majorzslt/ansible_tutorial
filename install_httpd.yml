@@ -5,10 +5,32 @@
   tasks:
 
   - name: update repository index
-    yum:
+    dnf:
       update_cache: yes
-
+    when: ansible_distribution == "OracleLinux" 
+    
   - name: install httpd package
-    yum:
+    dnf:
       name: httpd
+    when: ansible_distribution == "OracleLinux"
+
+  - name: add php support
+    dnf:
+      name: php
+    when: ansible_distribution == "OracleLinux"
+
+  - name: update repository index
+    apt:
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+
+  - name: install apache2 package
+    apt:
+      name: apache2
+    when: ansible_distribution == "Ubuntu"
+
+  - name: add php support
+    apt:
+      name: libapache2-mod-php
+    when: ansible_distribution == "Ubuntu"
 
