@@ -1,5 +1,10 @@
-192.168.200.139 httpd_package=httpd php_package=php
-192.168.200.136 httpd_package=httpd php_package=php
-192.168.200.134 httpd_package=httpd php_package=php
+[web_servers]
+192.168.200.139
+
+[db_servers]
+192.168.200.136 
+
+[file_servers]
+192.168.200.134 
 
 
