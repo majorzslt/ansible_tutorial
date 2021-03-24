@@ -36,7 +36,6 @@
        group: root
        
 
-
 - hosts: web_servers
   become: true
   tasks: 
@@ -48,6 +47,14 @@
         - httpd
         - php
       state: latest
+    when: ansible_distribution == "OracleLinux"
+
+  - name: start httpd (OracleLinux)
+    tags: apache,oraclelinux,httpd
+    service:
+      name: httpd
+      state: started
+      enabled: yes
     when: ansible_distribution == "OracleLinux"
 
   - name: install apache2 and php packages for Ubuntu
