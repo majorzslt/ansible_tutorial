@@ -2,15 +2,15 @@
     tags: apache,oraclelinux,httpd
     dnf:
       name: 
-        - httpd
-        - php
+        - "{{ apache_package_name }}"
+        - "{{ php_package_name }}"
       state: latest
     when: ansible_distribution == "OracleLinux"
 
   - name: start httpd (OracleLinux)
     tags: apache,oraclelinux,httpd
     service:
-      name: httpd
+      name: "{{ apache_service }}"
       state: started
       enabled: yes
     when: ansible_distribution == "OracleLinux"
@@ -29,16 +29,9 @@
     lineinfile:
       path: /etc/httpd/conf/httpd.conf
       regexp: '^ServerAdmin'
-      line: ServerAdmin test@test.com
+      line: ServerAdmin test@test.net
     when: ansible_distribution == "OracleLinux"
-    register: httpd
-
-  - name: restart httpd (OracleLinux)
-    tags: apache, centos, httpd
-    service:
-      name: httpd
-      state: restarted
-    when: httpd.changed
+    notify: restart_httpd
 
   - name: copy default html file for site
     tags: apache, httpd
